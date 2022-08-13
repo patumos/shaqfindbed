@@ -1,0 +1,25 @@
+{% extends "fruit/product_form.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}            
+{{ form.media  }}
+{% endblock %}
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "SKU Edit" "fruit:sku_edit" pk=form.instance.pk  %}
+{% endblock %}
+
+{% block store_main %}
+    SKU Form
+
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy  }}
+    <input type='submit' class='btn btn-primary' name='updateStore' value="Update" />
+
+</form>
+
+{% endblock %}

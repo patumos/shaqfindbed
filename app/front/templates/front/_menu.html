@@ -1,0 +1,61 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark ">	
+	<a href="{% url "front:index" %}" class="navbar-brand">
+		<img src="{% static "front/images/wellnessbar.svg" %}" height="70" >
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav me-auto">
+		<!-- <li class="nav-item active">
+		  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		</li> -->
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			ประเภทสถานที่
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="/place">นวดไทย/สปา</a>
+			<a class="dropdown-item" href="/place">ร้านอาหาร</a>
+			<a class="dropdown-item" href="/place">สถานที่พัฒนาจิตใจ</a>
+			<a class="dropdown-item" href="/place">สถานที่ออกกำลังกาย</a>
+			<!-- <div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Something else here</a>
+		  </div> -->
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  จังหวัด
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="/province">ฉะเชิงเทรา</a>
+			  <a class="dropdown-item" href="/province">ชลบุรี</a>
+			  <a class="dropdown-item" href="/province">ระยอง</a>			  
+		  </li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">เกี่ยวก้บเรา</a>
+		  </li>
+		  <li class="nav-item">
+			  <a class="nav-link" href="#">ติดต่อเรา</a>
+		  </li>
+	  </ul>
+	  <!-- <form class="form-inline my-2 my-lg-0">
+		<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		<button class="btn my-2 my-sm-0" type="submit">Search</button>
+	  </form> -->
+	  
+	<div style="display: flex;">
+		<div style="flex: content; padding-right: 10px;">
+			<a href="#">
+		  <img src="{% static "img/apple-logo.png" %}" width="40">
+		</a>
+		</div>
+		<div style="flex: content;">
+			<a href="#">
+			<img src="{% static "img/andriod-logo.png" %}" width="40">
+		</a>
+		  </div>
+	</div>
+	</div>
+  </nav>

@@ -1,0 +1,18 @@
+{% extends "fruit/mystore.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}            
+{{ storeForm.media  }}
+{% endblock %}
+
+{% block store_main %}
+{{ stores }}
+<form  method="post">
+    {% csrf_token %}
+    {{ storeForm | crispy }}
+    <br>
+    <input type='submit' class='btn btn-primary' name='updateStore' value="Update" />
+
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "fruit/mystore.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}            
+{% endblock %}
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Sales" "fruit:sale_index" %}
+{% endblock %}
+
+{% block store_main %}
+<!--
+<a  class='btn btn-primary' href="{% url "fruit:product_create" %}">Create Product</a> -->
+<hr>
+<h2>
+    Sale Index</h2>
+{% include "fruit/_searchcenter.html" %}
+<hr>
+<table class='table table-borded table-striped'>
+    <thead>
+        <tr><th>ID</th><th>Product</th><th>SKU</th><th>Price</th><th>Unit(s)</th><th>UName</th><th>Total</th><th>Buyer</th><th>Created At</th></tr>
+    </thead>
+    <tbody>
+{% for p in page_obj %}
+        <tr>
+            <td><a href="{% url "fruit:sale_edit" pk=p.pk %}">{{ p.id }}</a></td><td>{{ p.product }}</td>
+            <td>{{ p.sku }}</td>
+            <td>{{ p.n_unit }}</td>
+            <td>{{ p.unit_name }}</td>
+            <td>{{ p.total }}</td>
+            <td>{{ p.buyer }}</td>
+            <td>{% firstof p.price  "-" %}</td><td>{{ p.created_at }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% include "fruit/_paging.html" %}
+{% endblock %}

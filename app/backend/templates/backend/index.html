@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}My amazing blog{% endblock %}
+
+{% block content %}
+Hello world
+<a href="{% url "backend.import_file" %}">Import</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% for s in stores %}
+<div class="col-md-12 col-lg-12">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="shadow-sm">
+                <img src="{{ s.feature_image.url }}" class="img-fluid ">
+            </div>						
+            <div class="d-block d-sm-none pb-3"></div>
+        </div>
+        <div class="col-lg-7">
+            <div>
+                <div class="ttext pb-2"><a href="{% url "front:placedetail"  oid=s.pk %}">{{ s.name }}</a></div>
+                <div class="ntext pb-2">{{ s.body.html | safe | truncatechars_html:200 }}</div>
+                <a href="{% url "front:store_province"  proname=s.province %}"><span class="ntext" >{{ s.province }}</span></a> <span class="ntext" >|</span> <a href="/place"><span class="ntext">{{ s.store_cat.name }}</span></a>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="py-2"><hr></div>
+        </div>
+    </div>
+</div>		
+{% endfor %}

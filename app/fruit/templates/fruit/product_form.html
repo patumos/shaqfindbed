@@ -1,0 +1,70 @@
+{% extends "fruit/product_index.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}            
+{{ form.media  }}
+{{ form2.media  }}
+{% endblock %}
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Product Edit" "fruit:product_edit" pid  %}
+{% endblock %}
+
+{% block store_main %}
+    Create Product
+
+
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy  }}
+        <fieldset class="border p-2 row">
+            <legend class='w-auto d-inline-block form-legend p-3'>Photos</legend>
+            {{ form2.management_form }}
+            {% for f0  in form2 %}
+            <div class='col-md-3 border'>
+            <!-- {{ f0.fields }} -->
+
+                {{ f0.id  | as_crispy_field }}
+                {{ f0.name | as_crispy_field }}
+                {% if f0.instance.photo %}
+                <a href="{{ f0.instance.photo.url }}" target="_blank">
+                    <img src="{{ f0.instance.photo.url  }}" width='100%' style='max-height:200px'></a>
+                {% endif %}
+                {{ f0.photo | as_crispy_field }}
+                
+                {{ f0.order_n  | as_crispy_field }}
+                {{ f0.product | as_crispy_field }}
+                {{ f0.DELETE | as_crispy_field }}
+            </div>
+            {% endfor %}
+        </fieldset>
+        <br>
+        <input type='submit' class='btn btn-primary' name='updateStore' value="Update" />
+
+    </form>
+    <hr>
+    <h2>SKUs</h2>
+    {% if obj %}
+    <a href="{% url "fruit:create_sku" pk=obj.pk %}" class='btn btn-primary'>Create SKU</a><br><br>
+    {% endif %}
+
+<table class='table table-bordered  table-striped'>
+    <thead>
+        <th>SKU</th>
+        <th>created at</th>
+    </thead>
+    <tbody>
+        
+        {% for o in  obj.productsku_set.all %}
+            <tr>
+                <td><a href="{% url "fruit:edit_sku" pk=o.pk %}">{{ o.sku }}</a></td>
+                <td>{{ o.created_at }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

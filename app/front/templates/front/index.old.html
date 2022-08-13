@@ -1,0 +1,39 @@
+{% extends "front/base.html" %}
+
+{% load static %}
+{% block content %}
+<br>
+<div class='row'>
+    <form method='post' enctype="multipart/form-data">
+         {% csrf_token %}
+    <div class='col-md-12'>
+        <input type='text' name='firstName' class='form-control' placeholder='ชื่อ' required/>
+        <br>
+        <input type='text' name='lastName' class='form-control' placeholder='นามสกุล' required/>
+        <br>
+        <!-- 
+        <input type='text' name='idCard' class='form-control' placeholder='หมายเลขบัตรประชาชน' required /> 
+        <br> -->
+        <label>วันเกิด</label>
+        <input type='date' name='bd' class='form-control' placeholder='วันเกิด' required />
+        <br>
+        <textarea name='address' class='form-control' placeholder='ที่อยู่' required></textarea>  
+        <br>
+        <textarea name='comment' class='form-control' placeholder='ข้อความฝากถึงเจ้าหน้าที่'></textarea>  
+        <br>
+        <input type='tel' name='tel' class='form-control' placeholder='Tel.' required/>
+        <br>
+        <input type='text' name='line_id' class='form-control' placeholder='Line ID'/>
+        <br>
+        <label>อัพโหลดภาพ</label>
+        <input type="file" name='photo' accept="image/*;capture=camera" class='form-control'> </br>
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <a class='btn btn-primary form-control' id="currentLocationBtn">
+        <i class="bi bi-geo-alt-fill"></i>
+            คลิกเพื่อแสดงตำแหน่ง</a><br><br>
+        <input type='text' class='form-control' name='geo' id='geoText' readonly/><br>
+        <input type='submit' value='ส่งข้อมูล' class='btn-success form-control'/><br><br>
+    </div>
+    </form>
+</div>
+{% endblock %}

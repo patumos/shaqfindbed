@@ -1,0 +1,23 @@
+{% extends "front/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .cover-page-item {
+	width:100%;
+	height:600px;
+	background:url('{% static "front/images/image-001.jpg" %}') no-repeat;
+	background-position: top center;
+	background-size:cover;		
+}
+</style>
+<section class="cover-page-item mar-b-40"></section>
+<div class="container">
+<div class="pt-40 pb-40"></div>	
+<div class="row mb-40">		
+    <div class="col-md-12 ">
+        <div class="ptext pb-4">{{ catname }}</div>
+    </div>		
+</div><!--- end row-->	
+{% include "front/_stores.html" with stores=stores %}
+</div>
+{% endblock %}

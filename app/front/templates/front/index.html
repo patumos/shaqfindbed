@@ -1,0 +1,82 @@
+{% extends "front/base.html" %}
+
+{% load static %}
+{% block top_slide %}
+{% include "front/carousel.html" %}   
+<div class="container">
+		<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+			<div class="col-md-12 px-0">
+				<h1 class="display-4 font-italic">Wellness Route</h1>
+				<p class="lead my-3">แนะนำเส้นทางการท่องเที่ยวร้านอาหาร สปา สนามกีฬา และกิจกรรมที่ได้รับมาตรฐานการรับรองความปลอดภัย Amazing Thailand Safety & Health Administration (SHA) เพื่อสร้างความมั่นใจแก่นักท่องเที่ยวว่าทุกคนจะได้รับประสบการณ์ที่ดี มีความสุข และความปลอดภัยด้านสุขอนามัยจากการเข้ารับบริการและเลือกซื้อสินค้าในประเทศไทย</p>
+				<!-- <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p> -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ttext pb-2">จังหวัด</div>
+			</div>
+			<div class="col-md-12">
+				<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+					<option selected>เลือกจังหวัด</option>
+					<option value="1">ฉะเชิงเทรา</option>
+					<option value="2">ชลบุรี</option>
+					<option value="3">ระยอง</option>
+				  </select>
+			</div>
+		</div>
+		<div class="row mt-4">
+			<div class="col-md-12">
+				<div class="ttext py-2">ประเภทสถานที่</div>
+			</div>
+			<div class="col-md-3 col-sm-6 col-6 pb-4">
+				<div class="place-cat-icon">
+					<a href="#"><i class="fas fa-spa fa-3x"></i></a>
+                    <div class="pt-3"><a href="{% url "front:store_cat" catname='นวดไทย'  %}">นวดไทย/สปา</a></div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-6 col-6 pb-4">
+				<div class="place-cat-icon">
+					<a href="#"><i class="fas fa-praying-hands fa-3x"></i></a>
+                    <div class="pt-3"><a href="{% url "front:store_cat" catname='ร้านอาหาร' %}">ร้านอาหาร</a></div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-6 col-6 pb-4">
+				<div class="place-cat-icon">
+					<a href="#"><i class="fas fa-utensils fa-4x"></i></a>
+					<div class="pt-3"><a href="{% url "front:store_cat" catname='สถานที่พัฒนาจิตใจ' %}">สถานที่พัฒนาจิตใจ</a></div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-6 col-6 pb-4">
+				<div class="place-cat-icon">
+					<a href="#"><i class="fas fa-running fa-4x"></i></a>
+					<div class="pt-3"><a href="{% url "front:store_cat" catname='สถานที่ออกกำลังกาย' %}">สถานที่ออกกำลังกาย</a></div>
+				</div>
+			</div>
+		</div>	
+		<div class="pt-20 pb-20"></div>			
+		<div class="row mb-40">
+            {% include "front/_stores.html" with stores=stores %}
+			<!-- <div class="col-md-12 col-lg-12">
+				<div class="row">
+					<div class="col-lg-5">
+						<div class="shadow-sm">
+							<img src="{% static "front/images/image-008.jpg" %}" class="img-fluid ">
+						</div>	
+						<div class="d-block d-sm-none pb-3"></div>
+					</div>
+					<div class="col-lg-7">
+						<div>
+							<div class="ttext pb-2"><a href="/placedetail">วิสาหกิจชุมชน ท่องเที่ยวเชิงอนุรักษ์กระแสบน</a></div>
+							<div class="ntext pb-2">Short Descriptions : ในสมัยกรุงศรีอยุธยาตอนปลาย พม่าได้ยกทัพมาตีทางด้านจังหวัดตาก ชาวมอญที่อาศัยอยู่ที่จังหวัดสุโขทัย ก็ได้อพยพหนีภัยสงคราม ลงมาตั้งรกรากอยู่ที่หมู่บ้านกระแซ </div>
+							<span class="ntext" >ระยอง</span> <span class="ntext" >|</span> <span class="ntext">สถานที่พัฒนาจิตใจ</span>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="py-2"><hr></div>
+					</div>
+				</div>
+			</div>					  		 -->
+		</div><!--- end row-->	
+	</div>
+{% endblock %}
+

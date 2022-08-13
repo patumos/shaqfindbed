@@ -1,0 +1,76 @@
+{% extends "front/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    @media (max-width: 575.98px) {
+        .cover-page-item {
+            width: 100%;
+            height: 300px;
+            background:url('{{ store.feature_image.url }}') no-repeat;
+            background-position: top center;
+            background-size: cover;
+            background-color: darkgray;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .cover-page-item {
+            width: 100%;
+            height: 600px;
+            background:url('{{ store.feature_image.url }}') no-repeat;
+            background-position: top center;
+            background-size: cover;
+            background-color: darkgray;
+        }
+    }
+</style>
+<section class="cover-page-item mar-b-40"></section>
+<div class="container">
+    <div class="pt-40 pb-40">
+        <div class="row mb-40">
+            <div class="col-md-12">
+                <div class="ptext pb-4">{{ store.name }}</div>
+            </div>
+            <div class="col-md-12">
+                <div class="pb-4">
+                    {{store.geolocation}}
+                        <iframe src="https://maps.google.com/maps?q={{store.geolocation}}&z=17&output=embed" width="100%" height="450" frameborder="0" style="border:0"></iframe>    
+                </div>
+            </div>
+            <div class="col-md-12 pb-4">
+                <div class="ttext pb-2">รายละเอียด</div>
+                <div>{{ store.body.html | safe }}</div>
+            </div>
+            <div class="col-md-12 pb-4">
+                <div class="ttext pb-2">เวลาเปิดทำงาน</div>
+                <div>{{ store.open_time }} - {{ store.close_time }}</div>
+            </div>
+            <div class="col-md-12 pb-4">
+                <div class="ttext pb-2">ที่อยู่</div>
+                <div>{{ store.address_text }}</div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div class="ttext pb-2">เบอร์โทรศัพท์</div>
+                <div>{{ store.tel }}</div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div class="ttext pb-2">อีเมล์</div>
+                <div>{{ store.email }}</div>
+            </div>
+            <div class="col-md-12 pb-4">
+                <div class="ttext pb-2">แกลลอรี่</div>
+
+                <div class="row">
+                    {% for p in store.storephoto_set.all %}
+                    <a href="{{ p.photo.url }}" data-toggle="lightbox" data-gallery="gallery"
+                        class="col-md-4 pb-4">
+                        <img src="{{ p.photo.url }}" class="img-fluid rounded">
+                    </a>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

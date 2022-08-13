@@ -1,0 +1,43 @@
+{% extends "front/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block header %}            
+{{ storeForm.media  }}
+{% endblock %}
+
+{% block content %}
+<h1>My Store</h1>
+<!-- 
+<form method=post>
+    {% csrf_token %}
+    <input type='text' name='name' class='form-control' placeholder='Store Name'/>
+    <input type='submit' class='btn btn-primary' name='createStore' value="Create Store" />
+</form>
+<hr> -->
+<div class="d-flex align-items-start">
+  <div class="nav flex-column nav-pills me-3 col-md-3 col-lg-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link {{ profile|yesno:"active," }}" id="v-pills-profile-tab"  href="{% url "fruit:profile" %}" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+      <a class="nav-link {{ mystore|yesno:"active," }}" id="v-pills-home-tab"  href="{% url "fruit:mystore" %}" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Store Info</a>
+      <a class="nav-link {{ product|yesno:"active," }}" id="v-pills-profile-tab"  href="{% url "fruit:product_index" %}" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Products</a>
+    <a class="nav-link" id="v-pills-messages-tab" href="{% url "fruit:inbox_index" %}" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inbox</a>
+    <a class="nav-link {{ sale_active|yesno:"active," }}" id="v-pills-settings-tab" href="{% url "fruit:sale_index" %}"  type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Saled Items</a>
+    <a class="nav-link" id="v-pills-vendor-tab" href="{% url "fruit:vendor_index" %}" type="button" role="tab" aria-controls="v-pills-vendor" aria-selected="false">Vendors</a>
+    <a class="nav-link" id="v-pills-vendororder-tab" href="{% url "fruit:vendororder_index" %}" type="button" role="tab" aria-controls="v-pills-vendororder" aria-selected="false">Vendor Order</a>
+  </div>
+  <div class="tab-content p-3 col-md-9 col-lg-10" id="v-pills-tabContent">
+      {% block breadcrumbs %}
+          {% clear_breadcrumbs %}
+          {% breadcrumb "My Store" "fruit:mystore" %}
+      {% endblock %}
+
+
+    {% render_breadcrumbs %} 
+      {% block store_main %}
+      {% endblock %}
+  </div>
+</div>
+
+
+{% endblock %}

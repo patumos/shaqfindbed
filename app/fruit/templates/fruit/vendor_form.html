@@ -1,0 +1,49 @@
+{% extends "fruit/vendor_index.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block header %}            
+{{ form.media  }}
+{{ form2.media }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Vendor Edit" "fruit:vendor_edit" vendor.pk %}
+{% endblock %}
+
+{% block store_main %}
+<h2>Vendor Form</h2>
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy  }}
+    <hr>
+    {% if obj %}
+    <a href="{% url "fruit:vendorproduct_create" pk=obj.id %}" class='btn btn-primary'>Create Product</a>
+    <h2>Products</h2>
+    <table class='table table-borded table-striped'>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Created At</th>
+        </tr>
+    </thead>   
+    <tbody>
+        {% for p in obj.vendorproduct_set.all %}
+        <tr>
+            <td><a href="{% url "fruit:vendorproduct_edit" pk=p.id %}">{{ p.id }}</a></td>
+            <td>{{ p.product }}</td>
+            <td>{{ p.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <br>
+    {% endif %}
+    <input type='submit' class='btn btn-primary' value="Update" />
+
+</form>
+
+{% endblock %}

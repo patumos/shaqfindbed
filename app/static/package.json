@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "holderjs": "^2.9.9"
+  }
+}

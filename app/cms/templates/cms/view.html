@@ -1,0 +1,8 @@
+{% extends "front/base.html" %}
+
+{% block content %}
+View HTML
+<h1>{{ post.title }}</h1>
+{{ post.body.html | safe }}
+{{ post_id }}
+{% endblock %}

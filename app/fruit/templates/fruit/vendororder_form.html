@@ -1,0 +1,25 @@
+{% extends "fruit/vendororder_index.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block header %}            
+{{ form.media  }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Vendor Order Form" "fruit:vendororder_edit" form.instance.pk %}
+{% endblock %}
+
+{% block store_main %}
+<h2>Vendor Order Form</h2>
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy  }}
+    <br>
+    <input type='submit' class='btn btn-primary' value="Update" />
+
+</form>
+
+{% endblock %}

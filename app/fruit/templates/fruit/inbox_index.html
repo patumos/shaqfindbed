@@ -1,0 +1,50 @@
+{% extends "fruit/mystore.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}            
+{% endblock %}
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Inboxes" "fruit:inbox_index" %}
+{% endblock %}
+
+{% block store_main %}
+<!--
+<a  class='btn btn-primary' href="{% url "fruit:product_create" %}">Create Product</a> -->
+<hr>
+<h2>
+    Inbox Index</h2>
+{% include "fruit/_searchcenter.html" %}
+<hr>
+<table class='table table-borded table-striped'>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Store</th>
+            <th>Product</th>
+            <th>Buyer</th>
+            <th>Subject</th>
+            <th>Body</th>
+            <th>Status</th>
+            <th>Created At</th></tr>
+    </thead>
+    <tbody>
+{% for p in page_obj %}
+        <tr>
+            <td><a href="{% url "fruit:inbox_edit" pk=p.pk %}">{{ p.id }}</a></td><td>{{ p.product }}</td>
+            <td>{{ p.store}}</td>
+            <td>{{ p.product }}</td>
+            <td>{{ p.buyer }}</td>
+            <td>{{ p.subject }}</td>
+            <td>{{ p.body }}</td>
+            <td>{{ p.status }}</td>
+            <td>{{ p.created_at }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% include "fruit/_paging.html" %}
+{% endblock %}

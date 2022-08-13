@@ -1,0 +1,13 @@
+{% load crispy_forms_tags %}
+<form method="get">
+    <div class='row'>
+        <!--
+            {{ filter.form.fields }} -->
+    {% for f0  in filter.form %}
+        <div class='col-md-3'>
+            {{ f0 | as_crispy_field}}  
+        </div>
+    {% endfor %}
+    </div>
+    <input type="submit" class='btn btn-primary' value='Search'/>
+</form>

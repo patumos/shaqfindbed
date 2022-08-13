@@ -1,0 +1,25 @@
+version: "3.3"
+   
+services:
+  db:
+    #image: postgres
+    image: postgis/postgis
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    #command: python manage.py runsslserver 0.0.0.0:8000 --certificate cert.pem --key key.pem
+    volumes:
+      - ./app:/code
+    ports:
+      - "8034:8000"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      WAIT_HOSTS: db:5432
